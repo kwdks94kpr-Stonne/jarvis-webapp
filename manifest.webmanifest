@@ -1,1 +1,1 @@
-{"name":"JARVIS Steuerzentrale","short_name":"JARVIS","start_url":"./index.html","scope":"./","display":"standalone","background_color":"#081525","theme_color":"#081525","lang":"de","icons":[{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]}
+{"name":"JARVIS – Steuerzentrale","short_name":"JARVIS","start_url":"./","scope":"./","display":"standalone","background_color":"#050d19","theme_color":"#06101e","lang":"de","icons":[{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any"}]}
