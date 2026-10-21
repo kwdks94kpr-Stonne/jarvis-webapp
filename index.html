@@ -31,7 +31,7 @@ speakButton.addEventListener('click',()=>{
  else window.speechSynthesis.cancel();
 });
 
-$('testVoice').addEventListener('click',()=>{if(!voiceEnabled){status('STIMME AUS','Aktiviere zuerst die Sprachausgabe.');return}status('SYSTEMSTATUS','JARVIS-Oberfläche aktiv. Kein direkter Zugriff auf ChatGPT oder Outlook.');speakJarvis('JARVIS Version null Punkt acht. System bereit. Sprachausgabe aktiv. ChatGPT Übergabe verfügbar.');msg('Systemstatus angesagt.')});
+$('testVoice').addEventListener('click',()=>{if(!voiceEnabled){status('STIMME AUS','Aktiviere zuerst die Sprachausgabe.');return}status('SYSTEMSTATUS','JARVIS-Oberfläche aktiv. Kein direkter Zugriff auf ChatGPT oder Outlook.');speakJarvis('JARVIS Version null Punkt neun. System bereit. Sprachausgabe aktiv. ChatGPT Übergabe verfügbar.');msg('Systemstatus angesagt.')});
 const reviewButton=$('review');
 const reactorWrap=document.querySelector('.reactor-wrap');
 function updateCommandReady(){const ready=cmd.value.trim().length>0;reviewButton.disabled=!ready;$('clearCmd').disabled=!ready;$('cmdCount').textContent=cmd.value.length+' Zeichen';reactorWrap.classList.toggle('command-ready',ready);$('inputIndicator').textContent=ready?'BEFEHL BEREIT':'BEFEHL LEER';$('inputIndicator').classList.toggle('good',ready)}
