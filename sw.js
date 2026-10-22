@@ -1,4 +1,4 @@
-const CACHE='jarvis-v10-local-callback';
+const CACHE='jarvis-v11-safe-callback';
 const CORE=['./','./index.html','./icon.svg','./manifest.webmanifest'];
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)));
@@ -12,6 +12,8 @@ self.addEventListener('fetch',event=>{
   const request=event.request;
   const url=new URL(request.url);
   if(request.method!=='GET'||url.origin!==self.location.origin)return;
+  // Callback URLs can contain spoken prompts and AI answers. Never cache those URLs.
+  if(url.searchParams.has('jarvis_return')||url.searchParams.has('result'))return;
   event.respondWith(
     fetch(request).then(response=>{
       if(response.ok){
