@@ -22,8 +22,8 @@ function assessCommand(){
   const info=$('commandAssessment'),button=$('approveCmd');
   button.hidden=true;approvedCommand='';
   if(!value){info.textContent='Bitte zuerst einen Befehl eingeben.';return}
-  const sensitive=/\\b(lösch|loesch|entfern|kündig|kuendig|überweis|ueberweis|zahl|kauf|bestell|buch|send|schick|verschick|veröffentlich|veroeffentlich|änder|aender|bearbeit|erstell|speicher|trag ein|terminier|erinner mich)\\w*/i.test(value);
-  const type=/\\b(job|stelle|bewerb)\\w*/i.test(value)?'Jobs':/\\b(geschäft|geschaeft|auftrag|gewinn|firma)\\w*/i.test(value)?'Geschäft':/\\b(termin|kalender|erinner)\\w*/i.test(value)?'Kalender/Erinnerungen':/\\b(mail|nachricht|outlook)\\w*/i.test(value)?'Nachrichten': 'Allgemeiner Befehl';
+  const sensitive=/\b(lösch|loesch|entfern|kündig|kuendig|überweis|ueberweis|zahl|kauf|bestell|buch|send|schick|verschick|veröffentlich|veroeffentlich|änder|aender|bearbeit|erstell|speicher|trag ein|terminier|erinner mich)\w*/i.test(value);
+  const type=/\b(job|stelle|bewerb)\w*/i.test(value)?'Jobs':/\b(geschäft|geschaeft|auftrag|gewinn|firma)\w*/i.test(value)?'Geschäft':/\b(termin|kalender|erinner)\w*/i.test(value)?'Kalender/Erinnerungen':/\b(mail|nachricht|outlook)\w*/i.test(value)?'Nachrichten': 'Allgemeiner Befehl';
   const safePrefix=sensitive?'JARVIS: Erstelle nur einen Vorschlag oder Entwurf. Führe keine Änderungen, Versendungen, Buchungen, Zahlungen oder Löschungen aus, bevor ich jede konkrete Aktion einzeln ausdrücklich freigegeben habe. ':'JARVIS: Analysiere zunächst, überprüfe die vorhandenen Informationen und vermeide Doppelungen. ';
   approvedCommand=safePrefix+value;
   info.textContent='Bereich: '+type+' | '+(sensitive?'Freigabe erforderlich: Nur vorbereiten, nichts ausführen.':'Nur Analyse oder Vorbereitung. Keine Ausführung ohne Zustimmung.');
