@@ -99,6 +99,8 @@ updateCommandReady();
  const scene=document.getElementById('bootScene'),line=document.getElementById('bootLine');
  const enter=document.getElementById('bootEnter'),sound=document.getElementById('bootSound');
  const replay=document.getElementById('replayBoot');
+ // Nach einer KI-Rückgabe die Antwort nicht hinter der Startanimation verdecken.
+ if(location.hash.includes('jarvis_reply=')||new URLSearchParams(location.search).has('jarvis_return'))scene.hidden=true;
  const reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
  function show(){scene.hidden=false;scene.classList.remove('done');line.textContent='SYSTEM INITIALISIERT · BEREIT ZUM START';enter.focus()}
  function close(withVoice){
