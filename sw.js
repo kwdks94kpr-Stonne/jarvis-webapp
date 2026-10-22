@@ -1,4 +1,4 @@
-const CACHE='jarvis-v14-callback-diagnostics';
+const CACHE='jarvis-v15-cinematic-boot';
 const CORE=['./','./index.html','./icon.svg','./manifest.webmanifest'];
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)));
