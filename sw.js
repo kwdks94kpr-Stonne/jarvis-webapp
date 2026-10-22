@@ -1,4 +1,4 @@
-const CACHE='jarvis-v09-final';
+const CACHE='jarvis-v10-local-callback';
 const CORE=['./','./index.html','./icon.svg','./manifest.webmanifest'];
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)));
