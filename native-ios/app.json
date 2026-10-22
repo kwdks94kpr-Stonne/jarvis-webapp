@@ -1,0 +1,17 @@
+{
+  "expo": {
+    "name": "JARVIS",
+    "slug": "jarvis-native",
+    "scheme": "jarvisnative",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "ch.jarvis.personal"
+    },
+    "extra": {
+      "purpose": "Persönlicher JARVIS-Assistent; keine Cloud-API-Schlüssel im Client"
+    }
+  }
+}
