@@ -33,6 +33,7 @@ if (!Array.isArray(state.items) || !state.items.length) errors.push('Projektstat
 const ids = (state.items || []).map(item => item.id);
 if (new Set(ids).size !== ids.length) errors.push('Projektstatus: doppelte Projekt-IDs');
 if (code.includes('BESTEHENDE JARVIS-ZENTRALE ↗')) errors.push('App.js: doppelte Start-Schaltfläche');
+if (!code.includes('onContentProcessDidTerminate')) errors.push('App.js: Wiederherstellung nach iOS-Webansicht-Abbruch fehlt');
 if (errors.length) {
   console.error('JARVIS-VORPRÜFUNG FEHLGESCHLAGEN\n' + errors.map(x => '- ' + x).join('\n'));
   process.exitCode = 1;
