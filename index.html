@@ -76,8 +76,7 @@ speakButton.addEventListener('click',()=>{
  speakButton.textContent=voiceEnabled?'🔊 Sprachausgabe: AN':'🔊 Sprachausgabe: AUS';
  speakButton.setAttribute('aria-label',voiceEnabled?'JARVIS Sprachausgabe ausschalten':'JARVIS Sprachausgabe einschalten');
  msg(voiceEnabled?'Sprachausgabe eingeschaltet.':'Sprachausgabe ausgeschaltet.');
- if(voiceEnabled)speakJarvis('JARVIS System bereit.');
- else window.speechSynthesis.cancel();
+ if(voiceEnabled){const reply=$('localReplyText').textContent.trim();if(autoReadReplyEnabled&&reply&&(!$('localReply').hidden)){speakJarvis(reply.slice(0,1800));msg('Empfangene KI-Antwort nach Einschalten der Stimme vorgelesen.')}else speakJarvis('JARVIS System bereit.')}else window.speechSynthesis.cancel();
 });
 
 // Parse returning shortcut content only after speech controls have been initialised.
