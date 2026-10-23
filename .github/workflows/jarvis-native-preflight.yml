@@ -26,6 +26,9 @@ jobs:
       - name: Abhaengigkeiten installieren (ohne Abo)
         working-directory: native-ios
         run: npm install --no-audit --no-fund
+      - name: Expo-SDK-Abhaengigkeiten pruefen
+        working-directory: native-ios
+        run: npx expo install --check
       - name: iOS-JavaScript-Bundle pruefen (keine iOS-Signierung)
         working-directory: native-ios
         run: npx expo export --platform ios --output-dir /tmp/jarvis-ios-export
