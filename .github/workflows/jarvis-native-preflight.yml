@@ -29,6 +29,9 @@ jobs:
       - name: Offline-Vorpruefung ohne Installationen
         working-directory: native-ios
         run: node scripts/preflight.js
+      - name: JARVIS Befehlsuebergabe und Freigabe pruefen
+        working-directory: native-ios
+        run: node scripts/check-command-handoff.js
       - name: Abhaengigkeiten installieren (ohne Abo)
         working-directory: native-ios
         run: npm install --no-audit --no-fund
