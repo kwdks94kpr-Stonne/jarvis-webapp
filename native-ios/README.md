@@ -10,7 +10,7 @@ Eine **native React-Native-App** mit eigener Startansicht, animiertem Reaktor, V
 
 ## Kostenlos auf iPhone mit Expo Go testen (Windows 10)
 1. Node.js LTS auf dem Windows-Laptop installieren.
-2. Im Ordner `native-ios` `npm install` und `npx expo start` ausführen.
+2. Im Ordner `native-ios` `npm install` und `npm run start:go` ausführen. Das erzwingt den Expo-Go-Modus, obwohl für spätere native Gerätebuilds auch `expo-dev-client` vorgesehen ist.
 3. Die kostenlose Expo-Go-App auf dem iPhone öffnen und den QR-Code aus demselben Netzwerk scannen.
 
 Expo Go ist **nur eine Testumgebung**, keine eigene separat installierte JARVIS-App. Für eine signierte eigenständige iOS-App ist iOS-Codesignierung/Provisioning erforderlich; Expo EAS Build kann iOS in der Cloud bauen, gewöhnliche Geräte- und TestFlight-Verteilung setzt normalerweise die kostenpflichtige Apple Developer Program-Mitgliedschaft voraus. Kein kostenpflichtiger Dienst wurde aktiviert.
