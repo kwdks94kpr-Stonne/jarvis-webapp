@@ -70,8 +70,8 @@
       "id": "J-IP-09",
       "name": "ChatGPT-Übergabe aus Webzentrale",
       "status": "partially_tested_on_iphone",
-      "evidence": "Screenshot 23.10.2026 22:37 zeigt ChatGPT nach Antippen von 'Geprüften Befehl in ChatGPT vorbereiten'; sichtbare Antwort behandelt JARVIS-Automationen statt exakt 'Prüfe meinen Systemstatus'",
-      "next": "Übergabeinhalt und manuelle Freigabe getrennt prüfen; nicht als korrekte automatische Befehlsausführung deklarieren"
+      "evidence": "23.10.2026: iPhone screenshots confirm copied approved text, including JARVIS instructions, pasted into ChatGPT. Prior URL-based handoff did not prove correct draft.",
+      "next": "Copied text flow verified; one-tap draft transfer still untested."
     }
   ]
 }
