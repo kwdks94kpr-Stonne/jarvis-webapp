@@ -3,6 +3,9 @@ const fs = require('node:fs');
 const path = require('node:path');
 const html = fs.readFileSync(path.resolve(__dirname,'../../index.html'),'utf8');
 const assertions = [
+  ['Callback starts after speech initialization', html.indexOf('receiveLocalAnswer();')>html.indexOf('function speakJarvis(text)')],
+  ['Optional voice mode persists across shortcut', html.includes("sessionStorage.setItem('jarvisAutoRead'")&&html.includes("sessionStorage.getItem('jarvisAutoRead'")],
+  ['Safari user-gesture voice fallback exists', html.includes("if(autoReadReplyEnabled&&reply&&(!$('localReply').hidden))")],
   ['Voice reply button present', html.includes('id="readLocalReply"')],
   ['Voice reply requires user action', html.includes("$('readLocalReply').addEventListener('click'")],
   ['Voice reply requires speech enabled', html.includes("if(!voiceEnabled){status('STIMME AUS'")],
