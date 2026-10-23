@@ -48,15 +48,12 @@ jobs:
           path: native-ios/snack-export/
           retention-days: 7
       - name: Einmalig Snack SDK bereitstellen
-        if: github.event_name == 'push'
         working-directory: native-ios
         run: npm install --no-save --no-audit --no-fund snack-sdk
       - name: JARVIS Snack Test veröffentlichen
-        if: github.event_name == 'push'
         working-directory: native-ios
         run: node scripts/publish-snack.js
       - name: Veröffentlichten Snack-Link sichern
-        if: github.event_name == 'push'
         uses: actions/upload-artifact@v4
         with:
           name: jarvis-snack-published-link
