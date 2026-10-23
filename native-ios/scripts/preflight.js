@@ -34,6 +34,13 @@ const ids = (state.items || []).map(item => item.id);
 if (new Set(ids).size !== ids.length) errors.push('Projektstatus: doppelte Projekt-IDs');
 if (code.includes('BESTEHENDE JARVIS-ZENTRALE ↗')) errors.push('App.js: doppelte Start-Schaltfläche');
 if (!code.includes('onContentProcessDidTerminate')) errors.push('App.js: Wiederherstellung nach iOS-Webansicht-Abbruch fehlt');
+// Das öffentliche Repository darf keine erkennbaren Zugangsschlüssel im Client enthalten.
+const clientFiles = ['App.js', 'app.json', 'package.json'];
+for (const file of clientFiles) {
+  const source = read(file);
+  const leakedToken = /(?:sk-proj-|sk-[A-Za-z0-9]{20,}|ghp_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|AIza[0-9A-Za-z_-]{30,})/;
+  if (leakedToken.test(source)) errors.push(file + ': möglicher geheimer API-Schlüssel im öffentlichen Client');
+}
 if (errors.length) {
   console.error('JARVIS-VORPRÜFUNG FEHLGESCHLAGEN\n' + errors.map(x => '- ' + x).join('\n'));
   process.exitCode = 1;
