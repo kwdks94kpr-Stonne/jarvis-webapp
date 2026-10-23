@@ -12,7 +12,7 @@ permissions:
 jobs:
   preflight:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 15
     steps:
       - name: Quellcode lesen
         uses: actions/checkout@v4
@@ -23,3 +23,9 @@ jobs:
       - name: Offline-Vorpruefung ohne Installationen
         working-directory: native-ios
         run: node scripts/preflight.js
+      - name: Abhaengigkeiten installieren (ohne Abo)
+        working-directory: native-ios
+        run: npm install --no-audit --no-fund
+      - name: iOS-JavaScript-Bundle pruefen (keine iOS-Signierung)
+        working-directory: native-ios
+        run: npx expo export --platform ios --output-dir /tmp/jarvis-ios-export
