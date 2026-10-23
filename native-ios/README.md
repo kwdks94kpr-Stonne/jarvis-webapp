@@ -29,3 +29,15 @@ Die native Webzentrale zeigt bei Netzwerk- und HTTP-Fehlern einen Hinweis mit **
 - Der Export prüft JavaScript/Metro-Bundling, **nicht** die native iOS-Kompilierung, Codesignierung oder Installation.
 - Für eine eigenständige installierbare iPhone-App fehlen weiterhin iOS-Build, Signierung und Geräte-Test.
 - Keine kostenpflichtige Apple-Registrierung, kein EAS-Build und keine Installation wurden gestartet.
+
+## Erster kostenloser iPhone-Gerätetest – gezielter Prüfplan
+Voraussetzung: Windows 10 mit Node.js LTS und GitHub-Projekt lokal verfügbar; iPhone und PC im selben WLAN; kostenlose Expo-Go-App. Das ist **keine eigenständige signierte JARVIS-App**.
+1. Im Ordner `native-ios` `npm install` ausführen, dann `npm run preflight` und `npm run start:go`.
+2. QR-Code mit Expo Go öffnen und prüfen, ob die native Startansicht und die Animation angezeigt werden.
+3. Auf **JARVIS STARTEN** tippen; die vorhandene Webzentrale muss innerhalb der App laden. Danach den Zurück-Knopf prüfen.
+4. Auf **LOKALE KI STARTEN** tippen: erst Abbrechen, dann Privat starten testen. Die bestehende iPhone-Kurzbefehls-App darf unverändert bleiben.
+5. **Im Web-HUD anzeigen** nur mit nicht vertraulichem Testsatz verwenden; die Antwort kann über eine URL übertragen werden.
+6. Bei Verbindungsproblemen **ERNEUT VERBINDEN** und **IN SAFARI ÖFFNEN** prüfen. Fehler und Ergebnisse ohne private Antworten dokumentieren.
+7. **Nicht als bestanden markieren**, bevor ein echter iPhone-Test bestätigt wurde. Kein bezahlter Build, Apple-Login oder Zugriff auf sensible Daten erforderlich.
+
+GitHub Actions Lauf 39934716067 bestätigt bereits: Installation der Pakete, Expo-SDK-Kompatibilitätsprüfung und iOS-JavaScript-Bundle erfolgreich. Dies ist ausdrücklich kein Geräte-Test.
