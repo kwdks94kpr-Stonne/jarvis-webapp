@@ -29,6 +29,18 @@ jobs:
       - name: Expo-SDK-Abhaengigkeiten pruefen
         working-directory: native-ios
         run: npx expo install --check
+      - name: Snack-Testdateien aus Haupt-App erzeugen
+        working-directory: native-ios
+        run: npm run prepare:snack
+      - name: Snack-Export mit Haupt-App vergleichen
+        working-directory: native-ios
+        run: cmp App.js snack-export/App.js
+      - name: Snack-Testpaket bereitstellen
+        uses: actions/upload-artifact@v4
+        with:
+          name: jarvis-iphone-snack-source
+          path: native-ios/snack-export/
+          retention-days: 7
       - name: iOS-JavaScript-Bundle pruefen (keine iOS-Signierung)
         working-directory: native-ios
         run: npx expo export --platform ios --output-dir /tmp/jarvis-ios-export
