@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {ActivityIndicator, Alert, Animated, Linking, Pressable, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, View} from 'react-native';
+import {ActivityIndicator, Alert, Animated, AccessibilityInfo, Linking, Pressable, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, View} from 'react-native';
 import {WebView} from 'react-native-webview';
 
 const WEB_URL = 'https://kwdks94kpr-stonne.github.io/jarvis-webapp/';
@@ -9,8 +9,10 @@ export default function App(){
   const [ready,setReady]=useState(false);
   const [webError,setWebError]=useState('');
   const [retryKey,setRetryKey]=useState(0);
+  const [reduceMotion,setReduceMotion]=useState(false);
   const spin=useRef(new Animated.Value(0)).current;
-  useEffect(()=>{const a=Animated.loop(Animated.timing(spin,{toValue:1,duration:14000,useNativeDriver:true}));a.start();return ()=>a.stop()},[spin]);
+  useEffect(()=>{let active=true;AccessibilityInfo.isReduceMotionEnabled().then(value=>{if(active)setReduceMotion(Boolean(value))}).catch(()=>{});const sub=AccessibilityInfo.addEventListener('reduceMotionChanged',value=>setReduceMotion(Boolean(value)));return ()=>{active=false;sub.remove()}},[]);
+  useEffect(()=>{spin.setValue(0);if(reduceMotion)return;const a=Animated.loop(Animated.timing(spin,{toValue:1,duration:14000,useNativeDriver:true}));a.start();return ()=>a.stop()},[spin,reduceMotion]);
   const rotation=spin.interpolate({inputRange:[0,1],outputRange:['0deg','360deg']});
   const openShortcut=async()=>{const url='shortcuts://x-callback-url/run-shortcut?name='+encodeURIComponent('JARVIS Lokale KI')+'&x-success='+encodeURIComponent(WEB_URL+'tests/local-ai-hud-return.html');try{await Linking.openURL(url)}catch(_error){Alert.alert('Kurzbefehle nicht erreichbar','Bitte prüfe, ob der bestehende Kurzbefehl „JARVIS Lokale KI“ auf dem iPhone verfügbar ist. Es wurde nichts verändert.')}};
   return <SafeAreaView style={styles.root}><StatusBar barStyle="light-content" backgroundColor="#030c17"/>
