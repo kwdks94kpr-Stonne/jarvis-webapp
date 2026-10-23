@@ -24,6 +24,7 @@ if (!pkg.dependencies?.['expo-dev-client']) errors.push('package.json: Entwicklu
 if (!pkg.scripts?.preflight?.includes('scripts/preflight.js')) errors.push('package.json: Vorprüfung nicht als Skript eingebunden');
 if (!code.includes('Privat starten') || !code.includes('Im Web-HUD anzeigen')) errors.push('App.js: explizite Auswahl für vertrauliche KI-Rückgabe fehlt');
 if (!code.includes("parsed.hostname==='kwdks94kpr-stonne.github.io'")) errors.push('App.js: vertrauenswürdige Webadresse nicht geprüft');
+if (!code.includes("success===WEB_URL+'tests/local-ai-hud-return.html'")) errors.push('App.js: Shortcut-Rücksprung ist nicht auf die bekannte Adresse eingeschränkt');
 if (!eas.build?.development || !eas.build?.preview) errors.push('eas.json: Test-Build-Profil fehlt');
 if (!code.includes('https://kwdks94kpr-stonne.github.io/jarvis-webapp/')) errors.push('App.js: bisherige JARVIS-Zentrale nicht eingebunden');
 if (!code.includes('JARVIS Lokale KI')) errors.push('App.js: bestehender KI-Kurzbefehl fehlt');
