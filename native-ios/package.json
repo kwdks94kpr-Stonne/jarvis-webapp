@@ -9,7 +9,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "preflight": "node scripts/preflight.js",
-    "start:go": "expo start --go"
+    "start:go": "expo start --go",
+    "prepare:snack": "node scripts/prepare-snack.js"
   },
   "dependencies": {
     "expo": "~54.0.0",
