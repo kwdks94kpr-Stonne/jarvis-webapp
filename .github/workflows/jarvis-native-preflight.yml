@@ -1,0 +1,25 @@
+name: JARVIS iPhone Vorpruefung
+on:
+  pull_request:
+    paths:
+      - 'native-ios/**'
+      - '.github/workflows/jarvis-native-preflight.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Quellcode lesen
+        uses: actions/checkout@v4
+      - name: Node.js vorbereiten
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Offline-Vorpruefung ohne Installationen
+        working-directory: native-ios
+        run: node scripts/preflight.js
