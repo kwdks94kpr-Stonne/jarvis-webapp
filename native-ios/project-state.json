@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "updatedOn": "2026-10-23",
+  "scope": "JARVIS eigene iPhone-App",
+  "rules": [
+    "iPhone zuerst; Laptop später",
+    "Keine neuen Abos oder kostenpflichtigen Dienste",
+    "Bestehende Funktionen weiterverwenden; Dubletten vermeiden",
+    "Keine sensiblen externen Aktionen ohne explizite Freigabe",
+    "Nicht getesteten Code niemals als auf iPhone bestätigt deklarieren"
+  ],
+  "items": [
+    {
+      "id": "J-IP-01",
+      "name": "JARVIS-Weboberfläche und Startanimation",
+      "status": "tested_on_iphone",
+      "evidence": "Nutzer-Screenshot vom 22./23.10.2026 bestätigt Anzeige des Startbildschirms",
+      "next": "Keine erneute Einrichtung"
+    },
+    {
+      "id": "J-IP-02",
+      "name": "Locally AI Sprache und Safari-Rückgabe",
+      "status": "tested_on_iphone",
+      "evidence": "Nutzer-Screenshots bestätigen gesprochene und im HUD angezeigte Antwort",
+      "next": "Funktionierende Verbindung nicht ohne Anlass ändern"
+    },
+    {
+      "id": "J-IP-03",
+      "name": "Kontrollierte Befehlsprüfung",
+      "status": "code_prepared",
+      "evidence": "GitHub main index.html enthält assessCommand; Nutzer-Screenshot bestätigt Anzeige, nicht vollständige Ausführung",
+      "next": "Nur bei Integration gezielt testen"
+    },
+    {
+      "id": "J-IP-04",
+      "name": "Native iPhone-App",
+      "status": "code_prepared",
+      "evidence": "GitHub Pull Request #4: feature/native-ios-app-foundation",
+      "next": "Build-/Signierweg für iPhone ohne Mac und ohne neue Kosten verifizieren"
+    },
+    {
+      "id": "J-IP-05",
+      "name": "Native KI-Rückgabe in eigene App",
+      "status": "open",
+      "evidence": "Bisheriger Shortcut-Callback öffnet Safari statt nativer App",
+      "next": "Gesicherten Callback mit expliziter Nutzerfreigabe entwerfen"
+    },
+    {
+      "id": "J-IP-06",
+      "name": "Dauerhaftes privates App-Projektgedächtnis",
+      "status": "open",
+      "evidence": "Dieses Manifest dokumentiert nur Projektstatus im Repository, kein persönliches App-Gedächtnis",
+      "next": "Lokales Speicherkonzept und Datenkontrolle implementieren"
+    }
+  ]
+}
