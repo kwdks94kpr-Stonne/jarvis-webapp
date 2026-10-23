@@ -13,7 +13,7 @@ async function run() {
     description: 'Öffentlicher Test des bestehenden JARVIS-Prototyps; keine persönlichen Daten',
     sdkVersion: '54.0.0',
     files: {'App.js': {type: 'CODE', contents: appCode}},
-    dependencies: {'react-native-webview': {version: '13.15.0'}}
+    dependencies: {} // Expo Go SDK 54 already bundles react-native-webview
   });
   const result = await snack.saveAsync({ignoreUser: true});
   if (!result.id) throw new Error('Expo returned no saved Snack ID');
