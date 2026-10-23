@@ -35,8 +35,8 @@
       "id": "J-IP-04",
       "name": "Native iPhone-App",
       "status": "code_prepared",
-      "evidence": "GitHub Pull Request #4: feature/native-ios-app-foundation",
-      "next": "Build-/Signierweg für iPhone ohne Mac und ohne neue Kosten verifizieren"
+      "evidence": "GitHub PR #4, Expo-Konfiguration und iOS-JavaScript-Bundle erfolgreich in GitHub Actions Lauf 39931561146; kein nativer iOS-Gerätebuild",
+      "next": "Native iOS-Signierung/Installation und echter iPhone-Test stehen aus; keine neuen Kosten ohne Freigabe"
     },
     {
       "id": "J-IP-05",
@@ -51,6 +51,13 @@
       "status": "open",
       "evidence": "Dieses Manifest dokumentiert nur Projektstatus im Repository, kein persönliches App-Gedächtnis",
       "next": "Lokales Speicherkonzept und Datenkontrolle implementieren"
+    },
+    {
+      "id": "J-IP-07",
+      "name": "Automatischer iOS-JavaScript-Bundle-Test",
+      "status": "ci_tested",
+      "evidence": "GitHub Actions Lauf 39931561146: npm install, Vorprüfung und expo export --platform ios erfolgreich",
+      "next": "CI bei weiteren Änderungen beibehalten; nicht mit nativem Gerätebuild verwechseln"
     }
   ]
 }
