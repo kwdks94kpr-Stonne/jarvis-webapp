@@ -6,8 +6,7 @@ const WEB_URL = 'https://kwdks94kpr-stonne.github.io/jarvis-webapp/';
 const CYAN = '#73e8ff';
 export default function App(){
   const [section,setSection]=useState('home');
-  const [ready,setReady]=useState(false);
-  const [webError,setWebError]=useState('');
+    const [webError,setWebError]=useState('');
   const [retryKey,setRetryKey]=useState(0);
   const [reduceMotion,setReduceMotion]=useState(false);
   const spin=useRef(new Animated.Value(0)).current;
@@ -19,9 +18,9 @@ export default function App(){
   {section==='home'?<ScrollView contentContainerStyle={styles.home}>
    <Text style={styles.brand}>J.A.R.V.I.S.</Text><Text style={styles.caption}>PERSÖNLICHE KI · NATIVER IPHONE-PROTOTYP</Text>
    <View style={styles.orbitBox}><Animated.View style={[styles.orbit,{transform:[{rotate:rotation}]}]}/><View style={styles.core}><Text style={styles.j}>J</Text></View></View>
-   <Text style={styles.heading}>{ready?'JARVIS ONLINE':'SYSTEM BEREIT'}</Text>
-   <Text style={styles.description}>{ready?'Alle verfügbaren Systeme bereit.':'Bereit für den Start. Lokale KI und bestehende Webzentrale bleiben erhalten.'}</Text>
-   <Pressable accessibilityRole="button" style={styles.primary} onPress={()=>setReady(true)}><Text style={styles.primaryText}>{ready?'SYSTEM BEREIT':'JARVIS STARTEN'}</Text></Pressable>
+   <Text style={styles.heading}>SYSTEM BEREIT</Text>
+   <Text style={styles.description}>Bereit für den Start. Die vorhandene Sprach- und Befehlszentrale öffnet sich nach dem Start.</Text>
+   <Pressable accessibilityRole="button" style={styles.primary} onPress={()=>{setSection('legacy')}}><Text style={styles.primaryText}>JARVIS STARTEN · ZENTRALE ÖFFNEN</Text></Pressable>
    <Pressable accessibilityRole="button" style={styles.button} onPress={openShortcut}><Text style={styles.buttonText}>LOKALE KI STARTEN ↗</Text></Pressable>
    <Pressable accessibilityRole="button" style={styles.button} onPress={()=>setSection('legacy')}><Text style={styles.buttonText}>BESTEHENDE JARVIS-ZENTRALE ↗</Text></Pressable>
    <Text style={styles.note}>Entwicklungsstand: Native Oberfläche vorbereitet, noch nicht auf deinem iPhone getestet. Die lokale KI wird weiterhin über den vorhandenen Kurzbefehl gestartet und ihre Antwort öffnet Safari – noch keine native Rückgabe. Keine neue Geräteberechtigung und keine automatische Aktion.</Text>
