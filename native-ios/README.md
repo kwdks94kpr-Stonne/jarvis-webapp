@@ -20,3 +20,6 @@ Expo Go ist **nur eine Testumgebung**, keine eigene separat installierte JARVIS-
 - Bestehende Shortcut-Rückgabe in der eingebetteten WebView gesondert testen: der Rückweg nach Safari ist erwartbar und kein vollständiger nativer Callback.
 - Für iPhone-Aktionen native Brücken nur nach Prüfung der iOS-Berechtigungen und mit expliziter Freigabe entwickeln.
 - Nicht ungefragt Daten über URL-Parameter versenden, da sie in Verlauf/Server-Logs gelangen können.
+
+## Neue Fehlerbehandlung
+Die native Webzentrale zeigt bei Netzwerk- und HTTP-Fehlern einen Hinweis mit **Erneut verbinden** und **In Safari öffnen**. Diese Änderung wurde im GitHub-Quellcode vorbereitet, aber noch nicht auf einem realen iPhone ausgeführt oder überprüft. Der funktionierende Safari-Kurzbefehl bleibt unverändert.
