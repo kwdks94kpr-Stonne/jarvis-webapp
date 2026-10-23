@@ -3,6 +3,10 @@ const fs = require('node:fs');
 const path = require('node:path');
 const html = fs.readFileSync(path.resolve(__dirname,'../../index.html'),'utf8');
 const assertions = [
+  ['Voice reply button present', html.includes('id="readLocalReply"')],
+  ['Voice reply requires user action', html.includes("$('readLocalReply').addEventListener('click'")],
+  ['Voice reply requires speech enabled', html.includes("if(!voiceEnabled){status('STIMME AUS'")],
+  ['Voice reply uses received text and length limit', html.includes("speakJarvis(reply.slice(0,1800))")],
   ['Copy control exists', html.includes('id="copyApprovedCmd"')],
   ['Copy uses the approved text', html.includes('navigator.clipboard.writeText(approvedCommand)')],
   ['Command edits invalidate approval', html.includes("cmd.addEventListener('input',()=>{approvedCommand='';$('approveCmd').hidden=true;$('copyApprovedCmd').hidden=true;")],
