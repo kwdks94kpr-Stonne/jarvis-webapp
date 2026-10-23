@@ -6,7 +6,7 @@ const WEB_URL = 'https://kwdks94kpr-stonne.github.io/jarvis-webapp/';
 const CYAN = '#73e8ff';
 export default function App(){
   const [section,setSection]=useState('home');
-    const [webError,setWebError]=useState('');
+  const [webError,setWebError]=useState('');
   const [retryKey,setRetryKey]=useState(0);
   const [reduceMotion,setReduceMotion]=useState(false);
   const spin=useRef(new Animated.Value(0)).current;
@@ -22,7 +22,6 @@ export default function App(){
    <Text style={styles.description}>Bereit für den Start. Die vorhandene Sprach- und Befehlszentrale öffnet sich nach dem Start.</Text>
    <Pressable accessibilityRole="button" style={styles.primary} onPress={()=>{setSection('legacy')}}><Text style={styles.primaryText}>JARVIS STARTEN · ZENTRALE ÖFFNEN</Text></Pressable>
    <Pressable accessibilityRole="button" style={styles.button} onPress={openShortcut}><Text style={styles.buttonText}>LOKALE KI STARTEN ↗</Text></Pressable>
-   <Pressable accessibilityRole="button" style={styles.button} onPress={()=>setSection('legacy')}><Text style={styles.buttonText}>BESTEHENDE JARVIS-ZENTRALE ↗</Text></Pressable>
    <Text style={styles.note}>Entwicklungsstand: Native Oberfläche vorbereitet, noch nicht auf deinem iPhone getestet. Die lokale KI wird weiterhin über den vorhandenen Kurzbefehl gestartet und ihre Antwort öffnet Safari – noch keine native Rückgabe. Keine neue Geräteberechtigung und keine automatische Aktion.</Text>
   </ScrollView>:<View style={styles.legacy}><Pressable style={styles.back} onPress={()=>setSection('home')}><Text style={styles.buttonText}>‹ NATIVER JARVIS-START</Text></Pressable>{webError ? <View style={styles.errorPanel}><Text style={styles.errorText}>{webError}</Text><Pressable style={styles.button} onPress={()=>{setWebError('');setRetryKey(value=>value+1)}}><Text style={styles.buttonText}>ERNEUT VERBINDEN</Text></Pressable><Pressable style={styles.button} onPress={()=>Linking.openURL(WEB_URL).catch(()=>{})}><Text style={styles.buttonText}>IN SAFARI ÖFFNEN</Text></Pressable></View> : null}<WebView source={{uri:WEB_URL}} startInLoadingState renderLoading={()=> <ActivityIndicator color={CYAN} style={styles.loading}/>} key={retryKey} onError={()=>setWebError('Die Webzentrale konnte nicht geladen werden. Prüfe deine Internetverbindung.')} onHttpError={event=>{if(event.nativeEvent.statusCode>=400)setWebError('Die Webzentrale antwortet mit HTTP '+event.nativeEvent.statusCode+'.')}} onLoadStart={()=>setWebError('')} onShouldStartLoadWithRequest={request=>{const url=request.url;if(url==='about:blank')return true;if(url.startsWith('shortcuts://')){Linking.openURL(url).catch(()=>Alert.alert('Kurzbefehle nicht erreichbar','Bitte den vorhandenen JARVIS-Kurzbefehl prüfen.'));return false}if(url.startsWith(WEB_URL))return true;if(url.startsWith('https://chatgpt.com/')){Linking.openURL(url).catch(()=>Alert.alert('ChatGPT konnte nicht geöffnet werden','Der Befehl wurde nicht automatisch abgesendet.'));return false}if(url.startsWith('http://')||url.startsWith('https://')){Linking.openURL(url).catch(()=>Alert.alert('Link nicht geöffnet','Externe Webseite konnte nicht geöffnet werden.'));return false}return false}}/></View>}
   </SafeAreaView>
