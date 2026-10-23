@@ -24,8 +24,8 @@ Expo Go ist **nur eine Testumgebung**, keine eigene separat installierte JARVIS-
 ## Neue Fehlerbehandlung
 Die native Webzentrale zeigt bei Netzwerk- und HTTP-Fehlern einen Hinweis mit **Erneut verbinden** und **In Safari öffnen**. Diese Änderung wurde im GitHub-Quellcode vorbereitet, aber noch nicht auf einem realen iPhone ausgeführt oder überprüft. Der funktionierende Safari-Kurzbefehl bleibt unverändert.
 
-## Verifizierter CI-Prüflauf
-- Die GitHub-Actions-Vorprüfung für die native App lief erfolgreich (Lauf 39922379770).
-- Die Vorprüfung kontrolliert Konfiguration und bekannte Sicherheitsmerkmale ohne Paketinstallation.
-- **Sie ersetzt weder `npm install`, einen Metro-Bundle-Test noch einen iOS-Build oder Geräte-Test.**
-- Für einen tatsächlichen iPhone-Test sind noch eine Entwicklungsumgebung und eine passende Installationsmethode nötig; ohne ausdrückliche Zustimmung keine kostenpflichtige Apple-Mitgliedschaft.
+## Verifizierter iOS-JavaScript-Bundle-Test
+- GitHub Actions Lauf 39931561146 (23.10.2026) erfolgreich: Vorprüfung, npm install und `npx expo export --platform ios`.
+- Der Export prüft JavaScript/Metro-Bundling, **nicht** die native iOS-Kompilierung, Codesignierung oder Installation.
+- Für eine eigenständige installierbare iPhone-App fehlen weiterhin iOS-Build, Signierung und Geräte-Test.
+- Keine kostenpflichtige Apple-Registrierung, kein EAS-Build und keine Installation wurden gestartet.
