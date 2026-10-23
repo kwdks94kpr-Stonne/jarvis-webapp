@@ -27,16 +27,16 @@
     {
       "id": "J-IP-03",
       "name": "Kontrollierte Befehlsprüfung",
-      "status": "code_prepared",
-      "evidence": "GitHub main index.html enthält assessCommand; Nutzer-Screenshot bestätigt Anzeige, nicht vollständige Ausführung",
-      "next": "Nur bei Integration gezielt testen"
+      "status": "tested_on_iphone",
+      "evidence": "iPhone-Screenshots 23.10.2026 22:29–22:34: Eingabe 'Prüfe meinen Systemstatus', HUD 'BEFEHL GEPRÜFT', Detailklassifizierung 'Allgemeiner Befehl', Zustimmungshinweis und ChatGPT-Übergabeschaltfläche sichtbar; keine reale Systemanalyse oder Ausführung bestätigt",
+      "next": "Keine Wiederholung der klassifizierenden Web-Befehlsprüfung; tatsächliche Übergabe an ChatGPT bei Bedarf separat prüfen"
     },
     {
       "id": "J-IP-04",
       "name": "Native iPhone-App",
-      "status": "code_prepared",
-      "evidence": "GitHub PR #4, Expo-Konfiguration und iOS-JavaScript-Bundle erfolgreich in GitHub Actions Lauf 39931561146; kein nativer iOS-Gerätebuild",
-      "next": "Native iOS-Signierung/Installation und echter iPhone-Test stehen aus; keine neuen Kosten ohne Freigabe"
+      "status": "partially_tested_on_iphone",
+      "evidence": "Expo-Snack-Test https://snack.expo.dev/3WigP_sndIId9a9E_oYgM: iPhone-Screenshots 23.10.2026 17:55–17:58 zeigen native React-Native-Startansicht, Reaktor und Navigation zur Webzentrale in Safari; Snack-Test musste WebView auslassen. Vollständige Native-App nicht gebaut oder getestet",
+      "next": "Native WebView nur in signierbarem iOS-Gerätebuild prüfen; Snack-Variante ohne WebView nicht mit voll integrierter App verwechseln"
     },
     {
       "id": "J-IP-05",
@@ -58,6 +58,20 @@
       "status": "ci_tested",
       "evidence": "GitHub Actions Lauf 39931561146: npm install, Vorprüfung und expo export --platform ios erfolgreich",
       "next": "CI bei weiteren Änderungen beibehalten; nicht mit nativem Gerätebuild verwechseln"
+    },
+    {
+      "id": "J-IP-08",
+      "name": "Kostenloser iPhone-only Expo-Snack-Test",
+      "status": "tested_on_iphone",
+      "evidence": "Expo-Go-Screenshots 23.10.2026 17:55–17:58, Startbildschirm sichtbar und Safari-Zentrale erreichbar; WebView aus Snack-Test entfernt nach RNCWebView-Laufzeitfehlern",
+      "next": "Keine erneute Expo-Go-Registrierung oder identische Tests; weiter nur fehlende Funktionalität entwickeln"
+    },
+    {
+      "id": "J-IP-09",
+      "name": "ChatGPT-Übergabe aus Webzentrale",
+      "status": "partially_tested_on_iphone",
+      "evidence": "Screenshot 23.10.2026 22:37 zeigt ChatGPT nach Antippen von 'Geprüften Befehl in ChatGPT vorbereiten'; sichtbare Antwort behandelt JARVIS-Automationen statt exakt 'Prüfe meinen Systemstatus'",
+      "next": "Übergabeinhalt und manuelle Freigabe getrennt prüfen; nicht als korrekte automatische Befehlsausführung deklarieren"
     }
   ]
 }
