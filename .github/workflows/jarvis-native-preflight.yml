@@ -1,5 +1,11 @@
 name: JARVIS iPhone Vorpruefung
 on:
+  push:
+    branches:
+      - feature/native-ios-app-foundation
+    paths:
+      - 'native-ios/**'
+      - '.github/workflows/jarvis-native-preflight.yml'
   pull_request:
     paths:
       - 'native-ios/**'
