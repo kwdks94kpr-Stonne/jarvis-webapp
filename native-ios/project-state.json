@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "updatedOn": "2026-10-23",
+  "scope": "JARVIS eigene iPhone-App",
+  "rules": [
+    "iPhone zuerst; Laptop später",
+    "Keine neuen Abos oder kostenpflichtigen Dienste",
+    "Bestehende Funktionen weiterverwenden; Dubletten vermeiden",
+    "Keine sensiblen externen Aktionen ohne explizite Freigabe",
+    "Nicht getesteten Code niemals als auf iPhone bestätigt deklarieren"
+  ],
+  "items": [
+    {
+      "id": "J-IP-01",
+      "name": "JARVIS-Weboberfläche und Startanimation",
+      "status": "tested_on_iphone",
+      "evidence": "Nutzer-Screenshot vom 22./23.10.2026 bestätigt Anzeige des Startbildschirms",
+      "next": "Keine erneute Einrichtung"
+    },
+    {
+      "id": "J-IP-02",
+      "name": "Locally AI Sprache und Safari-Rückgabe",
+      "status": "tested_on_iphone",
+      "evidence": "Nutzer-Screenshots bestätigen gesprochene und im HUD angezeigte Antwort",
+      "next": "Funktionierende Verbindung nicht ohne Anlass ändern"
+    },
+    {
+      "id": "J-IP-03",
+      "name": "Kontrollierte Befehlsprüfung",
+      "status": "tested_on_iphone",
+      "evidence": "iPhone-Screenshots 23.10.2026 22:29–22:34: Eingabe 'Prüfe meinen Systemstatus', HUD 'BEFEHL GEPRÜFT', Detailklassifizierung 'Allgemeiner Befehl', Zustimmungshinweis und ChatGPT-Übergabeschaltfläche sichtbar; keine reale Systemanalyse oder Ausführung bestätigt",
+      "next": "Keine Wiederholung der klassifizierenden Web-Befehlsprüfung; tatsächliche Übergabe an ChatGPT bei Bedarf separat prüfen"
+    },
+    {
+      "id": "J-IP-04",
+      "name": "Native iPhone-App",
+      "status": "partially_tested_on_iphone",
+      "evidence": "Expo-Snack-Test https://snack.expo.dev/3WigP_sndIId9a9E_oYgM: iPhone-Screenshots 23.10.2026 17:55–17:58 zeigen native React-Native-Startansicht, Reaktor und Navigation zur Webzentrale in Safari; Snack-Test musste WebView auslassen. Vollständige Native-App nicht gebaut oder getestet",
+      "next": "Native WebView nur in signierbarem iOS-Gerätebuild prüfen; Snack-Variante ohne WebView nicht mit voll integrierter App verwechseln"
+    },
+    {
+      "id": "J-IP-05",
+      "name": "Native KI-Rückgabe in eigene App",
+      "status": "open",
+      "evidence": "Bisheriger Shortcut-Callback öffnet Safari statt nativer App",
+      "next": "Gesicherten Callback mit expliziter Nutzerfreigabe entwerfen"
+    },
+    {
+      "id": "J-IP-06",
+      "name": "Dauerhaftes privates App-Projektgedächtnis",
+      "status": "open",
+      "evidence": "Dieses Manifest dokumentiert nur Projektstatus im Repository, kein persönliches App-Gedächtnis",
+      "next": "Lokales Speicherkonzept und Datenkontrolle implementieren"
+    },
+    {
+      "id": "J-IP-07",
+      "name": "Automatischer iOS-JavaScript-Bundle-Test",
+      "status": "ci_tested",
+      "evidence": "GitHub Actions Lauf 39931561146: npm install, Vorprüfung und expo export --platform ios erfolgreich",
+      "next": "CI bei weiteren Änderungen beibehalten; nicht mit nativem Gerätebuild verwechseln"
+    },
+    {
+      "id": "J-IP-08",
+      "name": "Kostenloser iPhone-only Expo-Snack-Test",
+      "status": "tested_on_iphone",
+      "evidence": "Expo-Go-Screenshots 23.10.2026 17:55–17:58, Startbildschirm sichtbar und Safari-Zentrale erreichbar; WebView aus Snack-Test entfernt nach RNCWebView-Laufzeitfehlern",
+      "next": "Keine erneute Expo-Go-Registrierung oder identische Tests; weiter nur fehlende Funktionalität entwickeln"
+    },
+    {
+      "id": "J-IP-09",
+      "name": "ChatGPT-Übergabe aus Webzentrale",
+      "status": "partially_tested_on_iphone",
+      "evidence": "23.10.2026: iPhone screenshots confirm copied approved text, including JARVIS instructions, pasted into ChatGPT. Prior URL-based handoff did not prove correct draft.",
+      "next": "Copied text flow verified; one-tap draft transfer still untested."
+    }
+  ]
+}

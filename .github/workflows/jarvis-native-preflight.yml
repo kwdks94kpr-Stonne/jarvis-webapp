@@ -1,0 +1,67 @@
+name: JARVIS iPhone Vorpruefung
+on:
+  push:
+    branches:
+      - feature/native-ios-app-foundation
+    paths:
+      - 'native-ios/**'
+      - '.github/workflows/jarvis-native-preflight.yml'
+  pull_request:
+    paths:
+      - 'native-ios/**'
+      - '.github/workflows/jarvis-native-preflight.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Quellcode lesen
+        uses: actions/checkout@v4
+      - name: Node.js vorbereiten
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Offline-Vorpruefung ohne Installationen
+        working-directory: native-ios
+        run: node scripts/preflight.js
+      - name: JARVIS Befehlsuebergabe und Freigabe pruefen
+        working-directory: native-ios
+        run: node scripts/check-command-handoff.js
+      - name: Abhaengigkeiten installieren (ohne Abo)
+        working-directory: native-ios
+        run: npm install --no-audit --no-fund
+      - name: Expo-SDK-Abhaengigkeiten pruefen
+        working-directory: native-ios
+        run: npx expo install --check
+      - name: Snack-Testdateien aus Haupt-App erzeugen
+        working-directory: native-ios
+        run: npm run prepare:snack
+      - name: Snack-Export mit Haupt-App vergleichen
+        working-directory: native-ios
+        run: cmp App.js snack-export/App.js
+      - name: Snack-Testpaket bereitstellen
+        uses: actions/upload-artifact@v4
+        with:
+          name: jarvis-iphone-snack-source
+          path: native-ios/snack-export/
+          retention-days: 7
+      - name: Einmalig Snack SDK bereitstellen
+        working-directory: native-ios
+        run: npm install --no-save --no-audit --no-fund snack-sdk
+      - name: JARVIS Snack Test veröffentlichen
+        working-directory: native-ios
+        run: node scripts/publish-snack.js
+      - name: Veröffentlichten Snack-Link sichern
+        uses: actions/upload-artifact@v4
+        with:
+          name: jarvis-snack-published-link
+          path: native-ios/snack-published-url.txt
+          retention-days: 30
+      - name: iOS-JavaScript-Bundle pruefen (keine iOS-Signierung)
+        working-directory: native-ios
+        run: npx expo export --platform ios --output-dir /tmp/jarvis-ios-export
