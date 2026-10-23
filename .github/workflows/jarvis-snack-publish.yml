@@ -1,0 +1,33 @@
+name: JARVIS Snack einmalig bereitstellen
+on:
+  push:
+    branches:
+      - feature/native-ios-app-foundation
+    paths:
+      - '.github/workflows/jarvis-snack-publish.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Snack SDK bereitstellen
+        run: npm install --no-save --no-audit --no-fund snack-sdk
+        working-directory: native-ios
+      - name: Öffentlichen JARVIS-Prototyp als Snack speichern
+        run: node scripts/publish-snack.js
+        working-directory: native-ios
+      - name: Link als Artefakt sichern
+        uses: actions/upload-artifact@v4
+        with:
+          name: jarvis-snack-published-link
+          path: native-ios/snack-published-url.txt
+          retention-days: 30
